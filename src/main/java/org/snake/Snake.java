@@ -34,14 +34,33 @@ public class Snake {
         return body.get(0);
     }
 
+    public void setHead(Point head) {
+        this.body.set(0,head);
+    }
+
+
     private List<Point> getTail() {
         return body.subList(1, body.size());
     }
 
     public void move() {
+        Point head = getHead();
         ending.setLocation(body.get(body.size()-1));
         for (int i = body.size()-1; i>0; i--) {
             body.get(i).setLocation(body.get(i-1));
+        }
+
+        if (head.x < 0 ){
+            setHead(new Point(Board.FIELD_X,head.y));
+        }
+        if (head.x >= Board.FIELD_X ){
+            setHead(new Point(0,head.y));
+        }
+        if (head.y < 0 ){
+            setHead(new Point(head.x,Board.FIELD_Y));
+        }
+        if (head.y >= Board.FIELD_Y ){
+            setHead(new Point(head.x,0));
         }
 
         switch (direction) {
@@ -69,8 +88,7 @@ public class Snake {
             }
         }
 
-        return head.x < 0 || head.x >= Board.FIELD_X
-                || head.y < 0 || head.y >= Board.FIELD_Y;
+        return false;
     }
 
     public int getSize() {

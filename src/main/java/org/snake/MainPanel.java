@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 public class MainPanel extends JPanel {
 
-    private Snake snake = new Snake();
+    private Snake snake1 = new Snake();
     private Apple apple = new Apple();
     private boolean gameOver = false;
 
@@ -16,7 +16,7 @@ public class MainPanel extends JPanel {
         MainTimer timer = new MainTimer();
         timer.start();
 
-        MainFrame.score.setText("Score: " + snake.getSize());
+        MainFrame.score.setText("Score: " + snake1.getSize());
 
         setFocusable(true);
         addKeyListener(new MyKeyAdapter());
@@ -25,7 +25,8 @@ public class MainPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         Board.draw(g);
-        snake.draw(g);
+        snake1.draw(g);
+        snake1.draw(g);
         apple.draw(g);
     }
 
@@ -35,15 +36,15 @@ public class MainPanel extends JPanel {
         public MainTimer() {
             super(DELAY, e -> {
                 if (!gameOver) {
-                    snake.move();
+                    snake1.move();
 
-                    if (snake.eatApple(apple)) {
+                    if (snake1.eatApple(apple)) {
                         apple = new Apple();
                     }
 
-                    if (snake.isCollision()) {
+                    if (snake1.isCollision()) {
                         gameOver = true;
-                        MainFrame.score.setText("Game Over - Score: " + snake.getSize());
+                        MainFrame.score.setText("Game Over - Score: " + snake1.getSize());
                     }
                     repaint();
                 }
@@ -57,26 +58,26 @@ public class MainPanel extends JPanel {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_A:
-                    if (snake.getDirection() != Direction.R) {
-                        snake.setDirection(Direction.L);
+                    if (snake1.getDirection() != Direction.R) {
+                        snake1.setDirection(Direction.L);
                     }
                     break;
                 case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_D:
-                    if (snake.getDirection() != Direction.L) {
-                        snake.setDirection(Direction.R);
+                    if (snake1.getDirection() != Direction.L) {
+                        snake1.setDirection(Direction.R);
                     }
                     break;
                 case KeyEvent.VK_DOWN:
                 case KeyEvent.VK_S:
-                    if (snake.getDirection() != Direction.U) {
-                        snake.setDirection(Direction.D);
+                    if (snake1.getDirection() != Direction.U) {
+                        snake1.setDirection(Direction.D);
                     }
                     break;
                 case KeyEvent.VK_UP:
                 case KeyEvent.VK_W:
-                    if (snake.getDirection() != Direction.D) {
-                        snake.setDirection(Direction.U);
+                    if (snake1.getDirection() != Direction.D) {
+                        snake1.setDirection(Direction.U);
                     }
                     break;
             }
