@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Snake");
 
-        score = new JLabel("Score: ", SwingConstants.CENTER);
+        score = new JLabel("Scoreeee: ", SwingConstants.CENTER);
         score.setFont(new Font(score.getFont().getName(), Font.BOLD, 30));
 
         add(new MainPanel());
